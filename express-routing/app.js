@@ -7,11 +7,13 @@ const signUp = require('./routes/signUp')
 app.use('/user', signIn)
 app.use('/kullanici', signUp)
 
-app.use('/user', (req, res, next) => {
-  const isLoggedIn = false
-  if (isLoggedIn) next()
-  else res.send('Please sign in first!')
-})
+// Middlewares
+// app.use('/user', (req, res, next) => {
+//   const isLoggedIn = false
+//   if (isLoggedIn) next()
+//   else res.send('Please sign in first!')
+// })
+
 // GET, POST, PUT, DELETE, ALL
 
 // app.get('/', (req, res) => {

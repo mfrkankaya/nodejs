@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const isLoggedIn = require('../middlewares/isLoggedIn')
 
-router.get('/signIn', (req,res) => {
+router.get('/signIn', isLoggedIn, (req,res) => {
   res.send('Sign in page.')
 })
 
