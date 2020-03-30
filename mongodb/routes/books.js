@@ -21,6 +21,12 @@ router.post('/new', function(req, res, next) {
   })
 })
 
+router.get('/', (req, res) => {
+  Book.find({}, (err, data) => {
+    res.json(data)
+  })
+})
+
 router.get('/search', (req, res) => {
   Book.find({ published: true, title: 'NodeJS' }, (err, data) => {
     res.json(data)
