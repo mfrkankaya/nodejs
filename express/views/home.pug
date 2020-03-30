@@ -1,0 +1,11 @@
+extend layout
+
+//- If we dont type append, our block will override layout's block and we will lose layout.css here
+block append stylesheet
+  link(href="home.css")
+
+block content
+  | Home Page
+
+block append scripts
+  script(src="home.js")
