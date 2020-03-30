@@ -111,4 +111,20 @@ router.get('/aggregate', (req, res) => {
   )
 })
 
+router.get('/aggregate-lookup', (req, res) => {
+  Book.aggregate(
+    [
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userId',
+          foreignField: '_id',
+          as: 'user'
+        }
+      }
+    ],
+    (err, result) => res.json(result)
+  )
+})
+
 module.exports = router
