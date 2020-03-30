@@ -74,4 +74,19 @@ router.get('/sort', (req, res) => {
     .limit(1)
 })
 
+router.get('/aggregate', (req, res) => {
+  Book.aggregate(
+    [
+      {
+        $match: {
+          published: true
+        }
+      }
+    ],
+    (err, result) => {
+      res.json(result)
+    }
+  )
+})
+
 module.exports = router
