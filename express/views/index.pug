@@ -21,5 +21,7 @@ html
       else
         | This is not the number I'm looking for.
 
-
+      ul
+        each val, index in [1, 2, 3, 4, 5]
+          li= 'index-' + index + ': ' + val
     include footer
