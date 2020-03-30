@@ -47,6 +47,7 @@ router.get('/searchById', (req, res) => {
 
 router.put('/update', (req, res) => {
   // multi: true -> if it was false, only one record was gonna change, by that every published: false will bi published: true
+  // upsert: true -> if there's no record matching, mongo creates a new record as new data
   Book.update({ published: false }, { published: true }, { multi: true }, (err, data) => {
     res.json(data)
   })
