@@ -89,10 +89,20 @@ router.get('/aggregate', (req, res) => {
       //   }
       // }
       {
-        $project: { // Sends only selected props
+        $project: {
+          // Sends only selected props
           title: 1,
           meta: 1
         }
+      },
+      {
+        $sort: { title: -1 }
+      },
+      {
+        $limit: 2
+      },
+      {
+        $skip: 3
       }
     ],
     (err, result) => {
