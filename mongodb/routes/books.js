@@ -53,4 +53,10 @@ router.put('/update', (req, res) => {
   })
 })
 
+router.put('/updateById', (req, res) => {
+  Book.findByIdAndUpdate('5e8261da66bb3c290bca99e0', { title: 'New Title', 'meta.favs': 99 }, (err, data) => {
+    res.json(data)
+  })
+})
+
 module.exports = router
