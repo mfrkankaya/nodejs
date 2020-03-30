@@ -59,4 +59,10 @@ router.put('/updateById', (req, res) => {
   })
 })
 
+router.delete('/remove', (req, res) => {
+  Book.remove({ published: true }, (err, data) => {})
+  Book.findByIdAndRemove('5e8261da66bb3c290bca99e0', (err, data) => {})
+  Book.findOneAndRemove({ published: true }, (err, data) => {})
+})
+
 module.exports = router
