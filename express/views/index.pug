@@ -6,10 +6,20 @@ html
     - const school = 'Namık Kemal University'
     - const city = 'Tekirdağ'
 
-    h1(style="color: rebeccapurple; font-weight: 900;") Hello #{name} #{surname}!
-    h2 School: #{school}
-    h2 City: #{city}
-    //- span
-    //-   =surname -> We can use like this
+    div(style="padding: 2rem;")
+      h1(style="color: rebeccapurple; font-weight: 900;") Hello #{name} #{surname}!
+      h2 School: #{school}
+      h2 City: #{city}
+      //- span
+      //-   =surname -> We can use like this
+
+      - const number = 12
+      if !number
+        | There's no number!
+      else if number === 12
+        | The number is 12!
+      else
+        | This is not the number I'm looking for.
+
 
     include footer
