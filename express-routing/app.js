@@ -7,6 +7,10 @@ app.get('/', (req, res) => {
   res.send('Something cool!')
 })
 
+app.get('/users/:id', (req, res) => { // '/users/:id/:postId?' -> ? means postId is not required
+  res.send(req.params.id)
+})
+
 /**
  * Some url path definitions
  * ---------------------------------------------------------------------------------------------------------
