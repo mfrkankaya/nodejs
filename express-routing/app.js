@@ -7,6 +7,10 @@ const signUp = require('./routes/signUp')
 app.use('/user', signIn)
 app.use('/kullanici', signUp)
 
+/* -------------------------------------------------------------------------- */
+/*                 I didnt watch error handlers. DONT FORGET.                 */
+/* -------------------------------------------------------------------------- */
+
 // Middlewares
 // app.use('/user', (req, res, next) => {
 //   const isLoggedIn = false
