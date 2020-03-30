@@ -2,9 +2,14 @@ html
   head
     title Hello Pug!
 
-  body(style="margin: 0;")
-    h1(style="color: rebeccapurple; font-family: sans-serif; font-weight: 900;") Hello #{name} #{surname}!
+  body(style="margin: 0; font-family: sans-serif;")
+    - const school = 'Namık Kemal University'
+    - const city = 'Tekirdağ'
+
+    h1(style="color: rebeccapurple; font-weight: 900;") Hello #{name} #{surname}!
+    h2 School: #{school}
+    h2 City: #{city}
     //- span
-    //-   =surname
+    //-   =surname -> We can use like this
 
     include footer
