@@ -82,10 +82,16 @@ router.get('/aggregate', (req, res) => {
           published: true
         }
       },
+      // {
+      //   $group: {
+      //     _id: '$category',
+      //     unit: { $sum: 1 }
+      //   }
+      // }
       {
-        $group: {
-          _id: '$category',
-          unit: { $sum: 1 }
+        $project: { // Sends only selected props
+          title: 1,
+          meta: 1
         }
       }
     ],
