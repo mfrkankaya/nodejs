@@ -65,4 +65,10 @@ router.delete('/remove', (req, res) => {
   Book.findOneAndRemove({ published: true }, (err, data) => {})
 })
 
+router.get('/sort', (req, res) => {
+  Book.find({}, (err, data) => {
+    res.json(data)
+  }).sort({ 'meta.favs': 1, title: 1 }) // This sorts ascending, -1 sorts descending
+})
+
 module.exports = router
