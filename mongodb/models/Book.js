@@ -12,7 +12,8 @@ const BookSchema = new Schema({
   publishedAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  category: String
 })
 
 module.exports = mongoose.model('book', BookSchema)

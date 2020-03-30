@@ -81,6 +81,12 @@ router.get('/aggregate', (req, res) => {
         $match: {
           published: true
         }
+      },
+      {
+        $group: {
+          _id: '$category',
+          unit: { $sum: 1 }
+        }
       }
     ],
     (err, result) => {
