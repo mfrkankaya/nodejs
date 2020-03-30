@@ -1,15 +1,21 @@
 const express = require('express')
 const app = express()
 
+const signIn = require('./routes/signIn')
+const signUp = require('./routes/signUp')
+
+app.use('/user', signIn)
+app.use('/kullanici', signUp)
+
 // GET, POST, PUT, DELETE, ALL
 
-app.get('/', (req, res) => {
-  res.send('Something cool!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Something cool!')
+// })
 
-app.get('/users/:id', (req, res) => { // '/users/:id/:postId?' -> ? means postId is not required
-  res.send(req.params.id)
-})
+// app.get('/users/:id', (req, res) => { // '/users/:id/:postId?' -> ? means postId is not required
+//   res.send(req.params.id)
+// })
 
 /**
  * Some url path definitions
