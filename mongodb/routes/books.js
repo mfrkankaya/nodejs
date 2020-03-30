@@ -33,4 +33,10 @@ router.get('/search', (req, res) => {
   })
 })
 
+router.get('/searchOne', (req, res) => {
+  Book.findOne({ title: 'NodeJS' }, (err, data) => {
+    res.json(data)
+  })
+})
+
 module.exports = router
