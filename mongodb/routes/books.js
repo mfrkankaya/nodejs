@@ -39,4 +39,10 @@ router.get('/searchOne', (req, res) => {
   })
 })
 
+router.get('/searchById', (req, res) => {
+  Book.findById('5e8261da66bb3c290bca99e0', (err, data) => {
+    res.json(data)
+  })
+})
+
 module.exports = router
