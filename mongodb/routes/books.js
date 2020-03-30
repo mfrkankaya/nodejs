@@ -26,6 +26,11 @@ router.get('/', (req, res) => {
   Book.find({}, (err, data) => {
     res.json(data)
   })
+
+  // Only looks for if category exists
+  // Book.find({ category: { $exists: true } }, (err, data) => {
+  //   res.json(data)
+  // })
 })
 
 router.get('/search', (req, res) => {
