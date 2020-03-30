@@ -45,4 +45,11 @@ router.get('/searchById', (req, res) => {
   })
 })
 
+router.put('/update', (req, res) => {
+  // multi: true -> if it was false, only one record was gonna change, by that every published: false will bi published: true
+  Book.update({ published: false }, { published: true }, { multi: true }, (err, data) => {
+    res.json(data)
+  })
+})
+
 module.exports = router
