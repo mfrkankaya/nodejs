@@ -17,7 +17,19 @@ router.post('/', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const data = await Movie.find({})
+    const data = await Movie.aggregate([
+      {
+        $lookup: {
+          from: 'directors',
+          localField: 'directorId',
+          foreignField: '_id',
+          as: 'director'
+        }
+      },
+      {
+        $unwind: '$director'
+      }
+    ])
     res.json({ status: true, data })
   } catch (error) {
     res.json({ status: false, error })
