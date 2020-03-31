@@ -36,6 +36,18 @@ router.get('/top10', async (req, res, next) => {
   }
 })
 
+// Year Between
+router.get('/between/:startYear/:endYear', async (req, res, next) => {
+  const { startYear, endYear } = req.params
+
+  try {
+    const data = await Movie.find({ year: { $gte: parseInt(startYear), $lte: parseInt(endYear) } }) // lte: lower than and equal, gte: greater than and equal
+    res.json({ status: true, data })
+  } catch (error) {
+    res.json({ status: false, error })
+  }
+})
+
 router.get('/:movieId', async (req, res) => {
   const { movieId } = req.params
   try {
