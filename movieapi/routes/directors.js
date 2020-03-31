@@ -118,5 +118,15 @@ router.put('/:directorId', async (req, res) => {
   }
 })
 
+router.delete('/:directorId', async (req, res) => {
+  const { directorId } = req.params
+  try {
+    const data = await Director.findByIdAndRemove(directorId)
+    res.json({ status: true, data })
+  } catch (error) {
+    res.json({ status: false, error })
+  }
+})
+
 
 module.exports = router
