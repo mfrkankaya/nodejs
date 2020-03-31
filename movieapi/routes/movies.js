@@ -17,12 +17,17 @@ router.post('/', async (req, res, next) => {
     await movie.save()
     res.json({ status: true })
   } catch (error) {
-    res.json(error)
+    res.json({ status: false, error })
   }
 })
 
-router.get('/', (req, res, next) => {
-  res.send({ example: 'movie router' })
+router.get('/', async (req, res, next) => {
+  try {
+    const data = await Movie.find({})
+    res.json({ status: true, data })
+  } catch (error) {
+    res.json({ status: false, error })
+  }
 })
 
 module.exports = router
