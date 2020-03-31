@@ -6,7 +6,7 @@ const Movie = require('../models/Movie')
 
 router.post('/', async (req, res, next) => {
   const movie = new Movie(req.body)
-  
+
   try {
     await movie.save()
     res.json({ status: true })
@@ -18,6 +18,18 @@ router.post('/', async (req, res, next) => {
 router.get('/', async (req, res, next) => {
   try {
     const data = await Movie.find({})
+    res.json({ status: true, data })
+  } catch (error) {
+    res.json({ status: false, error })
+  }
+})
+
+// Top 10 List
+router.get('/top10', async (req, res, next) => {
+  try {
+    const data = await Movie.find({})
+      .limit(10)
+      .sort({ imdb: -1 })
     res.json({ status: true, data })
   } catch (error) {
     res.json({ status: false, error })
