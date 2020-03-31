@@ -108,4 +108,15 @@ router.get('/:directorId', async (req, res) => {
   }
 })
 
+router.put('/:directorId', async (req, res) => {
+  const { directorId } = req.params
+  try {
+    const data = await Director.findByIdAndUpdate(directorId, req.body, { new: true })
+    res.json({ status: true, data })
+  } catch (error) {
+    res.json({ status: false, error })
+  }
+})
+
+
 module.exports = router
