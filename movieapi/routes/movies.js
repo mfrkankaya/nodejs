@@ -40,4 +40,14 @@ router.get('/:movieId', async (req, res) => {
   }
 })
 
+router.put('/:movieId', async (req, res) => {
+  const { movieId } = req.params
+  try {
+    const data = await Movie.findByIdAndUpdate(movieId, req.body, { new: true })
+    res.json({ status: true, data })
+  } catch (error) {
+    res.json({ status: false, error })
+  }
+})
+
 module.exports = router
