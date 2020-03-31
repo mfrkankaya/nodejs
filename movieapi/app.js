@@ -7,11 +7,15 @@ const logger = require('morgan')
 // DB
 require('./helpers/db')()
 
+// Config
+const config = require('./config')
+
 const indexRouter = require('./routes/index')
 const moviesRouter = require('./routes/movies')
 const directorsRouter = require('./routes/directors')
 
 const app = express()
+app.set('API_SECRET_KEY', config.API_SCRET_KEY)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
