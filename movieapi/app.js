@@ -10,6 +10,9 @@ require('./helpers/db')()
 // Config
 const config = require('./config')
 
+// Middlewares
+const verifyToken = require('./middlewares/verifyToken')
+
 const indexRouter = require('./routes/index')
 const moviesRouter = require('./routes/movies')
 const directorsRouter = require('./routes/directors')
@@ -28,6 +31,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
+app.use('/api', verifyToken) // Middleware
 app.use('/api/movies', moviesRouter)
 app.use('/api/directors', directorsRouter)
 
