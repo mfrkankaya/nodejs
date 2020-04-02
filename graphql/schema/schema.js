@@ -3,50 +3,9 @@ const _ = require('lodash')
 
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLList } = graphql
 
-const directors = [
-  {
-    id: '1',
-    name: 'Fatih Akın',
-    birth: 1972
-  },
-  {
-    id: '2',
-    name: 'Quentin Tarantino',
-    birth: 1980
-  },
-  {
-    id: '3',
-    name: 'Onur Ünlü',
-    birth: 1970
-  }
-]
-
-const movies = [
-  {
-    id: '1',
-    title: 'God Father',
-    year: 1972,
-    description:
-      'Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak.',
-    directorId: '1'
-  },
-  {
-    id: '2',
-    title: 'Scarface',
-    year: 1980,
-    description:
-      'Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak.',
-    directorId: '1'
-  },
-  {
-    id: '3',
-    title: 'Babam ve Oğlum',
-    year: 2000,
-    description:
-      'Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak.',
-    directorId: '2'
-  }
-]
+// Mongo Models
+const Movie = require('../models/Movie')
+const Director = require('../models/Director')
 
 const MovieType = new GraphQLObjectType({
   name: 'Movie',
@@ -115,7 +74,7 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         return directors
       }
-    },
+    }
   }
 })
 
