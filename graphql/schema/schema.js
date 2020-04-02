@@ -1,7 +1,7 @@
 const graphql = require('graphql')
 const _ = require('lodash')
 
-const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLList } = graphql
+const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLList, GraphQLNonNull } = graphql
 
 // Mongo Models
 const Movie = require('../models/Movie')
@@ -89,10 +89,10 @@ const Mutation = new GraphQLObjectType({
     addMovie: {
       type: MovieType,
       args: {
-        title: { type: GraphQLString },
+        title: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: GraphQLString },
-        year: { type: GraphQLInt },
-        directorId: { type: GraphQLString }
+        year: { type: new GraphQLNonNull(GraphQLInt) },
+        directorId: { type: new GraphQLNonNull(GraphQLString) }
       },
       async resolve(parent, args) {
         const movie = new Movie({
@@ -113,7 +113,7 @@ const Mutation = new GraphQLObjectType({
     addDirector: {
       type: DirectorType,
       args: {
-        name: { type: GraphQLString },
+        name: { type: new GraphQLNonNull(GraphQLString) },
         birth: { type: GraphQLInt }
       },
       async resolve(parent, args) {
