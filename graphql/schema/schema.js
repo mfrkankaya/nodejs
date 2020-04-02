@@ -92,13 +92,33 @@ const Mutation = new GraphQLObjectType({
       async resolve(parent, args) {
         const movie = new Movie({
           title: args.title,
-          description: args.title,
+          description: args.description,
           year: args.year,
           directorId: args.directorId
         })
 
         try {
           const data = movie.save()
+          return data
+        } catch (error) {
+          return error
+        }
+      }
+    },
+    addDirector: {
+      type: DirectorType,
+      args: {
+        name: { type: GraphQLString },
+        birth: { type: GraphQLInt }
+      },
+      async resolve(parent, args) {
+        const director = new Director({
+          name: args.name,
+          birth: args.birth
+        })
+
+        try {
+          const data = director.save()
           return data
         } catch (error) {
           return error
