@@ -1,7 +1,7 @@
 const graphql = require('graphql')
 const _ = require('lodash')
 
-const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql
+const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLList } = graphql
 
 const directors = [
   {
@@ -69,7 +69,13 @@ const DirectorType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    birth: { type: GraphQLInt }
+    birth: { type: GraphQLInt },
+    movies: {
+      type: new GraphQLList(MovieType),
+      resolve(parent, args) {
+        return _.filter(movies, { directorId: parent.id })
+      }
+    }
   })
 })
 
