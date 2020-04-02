@@ -78,4 +78,34 @@ const RootQuery = new GraphQLObjectType({
   }
 })
 
-module.exports = new GraphQLSchema({ query: RootQuery })
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addMovie: {
+      type: MovieType,
+      args: {
+        title: { type: GraphQLString },
+        description: { type: GraphQLString },
+        year: { type: GraphQLInt },
+        directorId: { type: GraphQLString }
+      },
+      async resolve(parent, args) {
+        const movie = new Movie({
+          title: args.title,
+          description: args.title,
+          year: args.year,
+          directorId: args.directorId
+        })
+
+        try {
+          const data = movie.save()
+          return data
+        } catch (error) {
+          return error
+        }
+      }
+    }
+  }
+})
+
+module.exports = new GraphQLSchema({ query: RootQuery, mutation: Mutation })
