@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 module.exports = () => {
-  mongoose.connect('mongodb://mfurkankaya:mf133256@ds119060.mlab.com:19060/heroku_mr2pwd12', {
+  mongoose.connect(process.env.DB_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
