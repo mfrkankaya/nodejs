@@ -1,6 +1,6 @@
 const graphql = require('graphql')
 
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql
+const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt } = graphql
 
 const MovieType = new GraphQLObjectType({
   name: 'Movie',
@@ -11,3 +11,18 @@ const MovieType = new GraphQLObjectType({
     year: { type: GraphQLInt }
   })
 })
+
+const RootQuery = new GraphQLObjectType({
+  name: 'RootQueryType',
+  fields: {
+    movie: {
+      type: MovieType,
+      args: { id: { type: GraphQLString } },
+      resolve(parent, args) {
+        // get data
+      }
+    }
+  }
+})
+
+module.exports = new GraphQLSchema({ query: RootQuery })
