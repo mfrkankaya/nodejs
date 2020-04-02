@@ -3,6 +3,24 @@ const _ = require('lodash')
 
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql
 
+const directors = [
+  {
+    id: '1',
+    name: 'Fatih Akın',
+    birth: 1972
+  },
+  {
+    id: '2',
+    name: 'Quentin Tarantino',
+    birth: 1980
+  },
+  {
+    id: '3',
+    name: 'Onur Ünlü',
+    birth: 1970
+  }
+]
+
 const movies = [
   {
     id: '1',
@@ -37,6 +55,15 @@ const MovieType = new GraphQLObjectType({
   })
 })
 
+const DirectorType = new GraphQLObjectType({
+  name: 'Director',
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    birth: { type: GraphQLInt }
+  })
+})
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -53,6 +80,13 @@ const RootQuery = new GraphQLObjectType({
         args.id becomes 2
         */
         return _.find(movies, { id: args.id })
+      }
+    },
+    director: {
+      type: DirectorType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return _.find(directors, { id: args.id })
       }
     }
   }
