@@ -1,7 +1,7 @@
 const graphql = require('graphql')
 const _ = require('lodash')
 
-const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt } = graphql
+const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql
 
 const movies = [
   {
@@ -30,7 +30,7 @@ const movies = [
 const MovieType = new GraphQLObjectType({
   name: 'Movie',
   fields: () => ({
-    id: { type: GraphQLString },
+    id: { type: GraphQLID },
     title: { type: GraphQLString },
     description: { type: GraphQLString },
     year: { type: GraphQLInt }
@@ -42,7 +42,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     movie: {
       type: MovieType,
-      args: { id: { type: GraphQLString } },
+      args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         /* wen we make a request like;
         movie (id: 2){
