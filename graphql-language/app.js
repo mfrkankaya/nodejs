@@ -48,8 +48,7 @@ const resolvers = {
         id: Math.random()
           .toString(36)
           .substr(2, 10),
-        name: args.name,
-        birth: args.birth
+        ...args
       }
 
       directors.push(director)
@@ -57,15 +56,12 @@ const resolvers = {
     },
     createMovie: (parent, args) => {
       const directorExists = directors.some(director => director.id === args.directorId)
-      if(!directorExists) throw new Error('Director ID didn\'t match any director.')
+      if (!directorExists) throw new Error("Director ID didn't match any director.")
       const movie = {
         id: Math.random()
           .toString(36)
           .substr(2, 10),
-        title: args.title,
-        description: args.description,
-        year: args.year,
-        directorId: args.directorId
+        ...args
       }
 
       movies.push(movie)
