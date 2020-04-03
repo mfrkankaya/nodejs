@@ -8,7 +8,9 @@ const { movies, directors } = require('./data')
 const typeDefs = gql`
   type Query {
     director(id: ID!): Director!
+    directors: [Director!]!
     movie(id: ID!): Movie!
+    movies: [Movie!]!
   }
 
   type Director {
@@ -29,7 +31,9 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     director: (parent, args) => directors.find(director => director.id === args.id),
+    directors: () => directors,
     movie: (parent, args) => movies.find(movie => movie.id === args.id),
+    movies: () => movies
   }
 }
 
