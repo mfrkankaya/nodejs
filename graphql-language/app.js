@@ -4,8 +4,8 @@ const { ApolloServer, gql } = require('apollo-server-express');
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
   type Query {
-    name: String
-    surname: String
+    name: String!
+    surname: String!
     age: Int
   }
 `;
