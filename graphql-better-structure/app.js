@@ -7,7 +7,7 @@ const db = require('./data')
 const resolvers = require('./graphql/resolvers')
 
 const server = new ApolloServer({
-  typeDefs: importSchema('./graphql/schema/schema.graphql'),
+  typeDefs: importSchema('./graphql/schema.graphql'),
   resolvers,
   context: { db } // Context is a shared storage
 })
