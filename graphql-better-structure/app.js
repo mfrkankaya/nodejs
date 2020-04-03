@@ -1,50 +1,8 @@
 const express = require('express')
 const { ApolloServer, gql } = require('apollo-server-express')
+const { importSchema } = require('graphql-import')
 
 const { movies, directors } = require('./data')
-
-// String, Int, ID, Booleand, Float
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  type Query {
-    director(id: ID!): Director!
-    directors: [Director!]!
-    movie(id: ID!): Movie!
-    movies: [Movie!]!
-  }
-
-  type Mutation {
-    createDirector(data: CreateDirectorInput!): Director!
-    createMovie(data: CreateMovieInput!): Movie!
-  }
-
-  input CreateDirectorInput {
-    name: String!
-    birth: Int
-  }
-
-  input CreateMovieInput {
-    title: String!
-    description: String
-    year: Int!
-    directorId: ID!
-  }
-
-  type Director {
-    id: ID!
-    name: String!
-    birth: Int
-    movies: [Movie!]!
-  }
-
-  type Movie {
-    id: ID!
-    title: String!
-    year: Int!
-    description: String
-    director: Director!
-  }
-`
 
 // Provide resolver functions for your schema fields
 const resolvers = {
@@ -88,7 +46,7 @@ const resolvers = {
   }
 }
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({ typeDefs: importSchema('./graphql/schema/schema.graphql'), resolvers })
 
 const app = express()
 server.applyMiddleware({ app })
