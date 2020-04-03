@@ -15,6 +15,7 @@ const typeDefs = gql`
 
   type Mutation {
     createDirector(name: String!, birth: Int): Director!
+    createMovie(title: String!, description: String, year: Int!, directorId: ID!): Movie!
   }
 
   type Director {
@@ -53,6 +54,22 @@ const resolvers = {
 
       directors.push(director)
       return director
+    },
+    createMovie: (parent, args) => {
+      const directorExists = directors.some(director => director.id === args.directorId)
+      if(!directorExists) throw new Error('Director ID didn\'t match any director.')
+      const movie = {
+        id: Math.random()
+          .toString(36)
+          .substr(2, 10),
+        title: args.title,
+        description: args.description,
+        year: args.year,
+        directorId: args.directorId
+      }
+
+      movies.push(movie)
+      return movie
     }
   },
   Movie: {
