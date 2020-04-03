@@ -1,4 +1,6 @@
 require('dotenv').config()
+require('./helpers/db')()
+
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const { importSchema } = require('graphql-import')
