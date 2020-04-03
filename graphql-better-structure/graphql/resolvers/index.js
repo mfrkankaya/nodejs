@@ -1,6 +1,9 @@
+// Query Resolvers
 const Query = require('./Query')
-const Mutation = require('./Mutation')
 const Movie = require('./Movie')
 const Director = require('./Director')
+
+// Mutation Resolvers
+const Mutation = require('./mutation')
 
 module.exports = { Query, Mutation, Movie, Director }
