@@ -13,6 +13,10 @@ const typeDefs = gql`
     movies: [Movie!]!
   }
 
+  type Mutation {
+    createDirector(name: String!, birth: Int): Director!
+  }
+
   type Director {
     id: ID!
     name: String!
@@ -36,6 +40,20 @@ const resolvers = {
     directors: () => directors,
     movie: (parent, args) => movies.find(movie => movie.id === args.id),
     movies: () => movies
+  },
+  Mutation: {
+    createDirector: (parent, args) => {
+      const director = {
+        id: Math.random()
+          .toString(36)
+          .substr(2, 10),
+        name: args.name,
+        birth: args.birth
+      }
+
+      directors.push(director)
+      return director
+    }
   },
   Movie: {
     director: (parent, args) => directors.find(director => director.id === parent.directorId)
