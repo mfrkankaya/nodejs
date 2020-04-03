@@ -17,6 +17,7 @@ const typeDefs = gql`
     id: ID!
     name: String!
     birth: Int
+    movies: [Movie!]!
   }
 
   type Movie {
@@ -24,6 +25,7 @@ const typeDefs = gql`
     title: String!
     year: Int!
     description: String
+    director: Director!
   }
 `
 
@@ -34,6 +36,12 @@ const resolvers = {
     directors: () => directors,
     movie: (parent, args) => movies.find(movie => movie.id === args.id),
     movies: () => movies
+  },
+  Movie: {
+    director: (parent, args) => directors.find(director => director.id === parent.directorId)
+  },
+  Director: {
+    movies: (parent, args) => movies.filter(movie => movie.directorId === parent.id)
   }
 }
 
