@@ -10,10 +10,15 @@ const Header = () => {
       </div>
 
       <div className='header_menu'>
-        <NavLink exact to='/'>snaps</NavLink>
-        <NavLink exact to='/login'>login</NavLink>
-        <NavLink exact to='/join'>join</NavLink>
-       
+        <NavLink exact to='/'>
+          snaps
+        </NavLink>
+        <NavLink exact to='/login'>
+          login
+        </NavLink>
+        <NavLink exact to='/join'>
+          join
+        </NavLink>
       </div>
     </header>
   )
