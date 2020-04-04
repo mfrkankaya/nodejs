@@ -5,6 +5,8 @@ import Header from './components/Header'
 
 // Pages
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Join from './pages/Join'
 
 function App() {
   return (
