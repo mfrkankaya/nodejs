@@ -1,5 +1,5 @@
 const Query = {
-  user: (parent, args) => ({ name: 'Furkan', surname: 'Kaya' }),
+  user: async (parent, args, { User }) => await User.findById(args.id)
 }
 
 module.exports = Query
