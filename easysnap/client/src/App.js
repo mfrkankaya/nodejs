@@ -14,12 +14,15 @@ import Join from './pages/Join'
 
 const Root = () => (
   <Router>
-    <Switch>
-      <Route path='/' exact component={Home} />
-      <Route path='/login' component={Login} />
-      <Route path='/join' component={Join} />
-      <Redirect to='/' />
-    </Switch>
+    <>
+      <Header />
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/login' component={Login} />
+        <Route path='/join' component={Join} />
+        <Redirect to='/' />
+      </Switch>
+    </>
   </Router>
 )
 
@@ -27,7 +30,6 @@ function App() {
   return (
     <div id='app'>
       <div className='container'>
-        <Header />
         <Root />
       </div>
     </div>

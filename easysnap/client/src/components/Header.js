@@ -1,18 +1,21 @@
 import React from 'react'
 
+import { NavLink } from 'react-router-dom'
+
 const Header = () => {
   return (
-    <div className='header'>
+    <header className='header'>
       <div className='logo'>
         <h2 className='logo__title'>easysnap</h2>
       </div>
 
       <div className='header_menu'>
-        <div className='active'>snaps</div>
-        <div>login</div>
-        <div>join</div>
+        <NavLink exact to='/'>snaps</NavLink>
+        <NavLink exact to='/login'>login</NavLink>
+        <NavLink exact to='/join'>join</NavLink>
+       
       </div>
-    </div>
+    </header>
   )
 }
 
